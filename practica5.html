@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio José Clemente Maurer de Azari</title>
+    <style>
+        /* --- ESTILOS GENERALES Y RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff; /* Fondo blanco para el cuerpo */
+            color: #333333;
+        }
+
+        /* --- ENCABEZADO (HEADER) --- */
+        .header-principal {
+            background-color: #00468c; /* Fondo Azul */
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Círculo JCM a la izquierda */
+        .logo-circulo {
+            background-color: #ff8c00; /* Fondo Naranja */
+            color: #ffffff;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .titulos-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Título del colegio en Amarillo */
+        .titulo-colegio {
+            color: #ffcc00; /* Letras Amarillas */
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Subtítulo en letras pequeñas */
+        .subtitulo-sistema {
+            color: #ffffff;
+            font-size: 0.95rem;
+            margin-top: 2px;
+            opacity: 0.9;
+        }
+
+        /* Menú de 5 opciones en horizontal */
+        .menu-navegacion {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 12px;
+        }
+
+        .menu-navegacion ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .menu-navegacion a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .menu-navegacion a:hover {
+            color: #ffcc00;
+        }
+
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .contenedor-contenido {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Gran recuadro rectangular azul de Bienvenida */
+        .recuadro-bienvenida {
+            background-color: #00468c; /* Fondo Azul */
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .emoji-escuela {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .recuadro-bienvenida h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .recuadro-bienvenida p {
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+            opacity: 0.95;
+        }
+
+
+        /* --- Bloque de 5 Rectángulos Pequeños en Horizontal --- */
+        .bloque-estadisticas {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tarjeta-pequena {
+            flex: 1;
+            background-color: #f4f7fa;
+            border: 2px solid #00468c;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #00468c;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .tarjeta-pequena span {
+            display: block;
+            font-size: 1.4rem;
+            margin-top: 5px;
+            color: #ff8c00; /* Toque naranja para simular datos */
+        }
+
+
+        /* --- Bloque Inferior de 3 Cuadros Grandes --- */
+        .bloque-tres-cuadros {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .cuadro-info {
+            flex: 1;
+            background-color: #ffffff;
+            border: 2px solid #00468c;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .cuadro-info h3 {
+            color: #00468c;
+            border-bottom: 2px solid #ff8c00;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+        }
+
+        .cuadro-info p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo específico para la lista de materias */
+        .lista-materias {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Divide la lista en 2 columnas */
+            gap: 5px;
+        }
+
+        .lista-materias li {
+            font-size: 0.9rem;
+            padding: 4px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-principal">
+        <div class="header-top">
+            <div class="logo-circulo">
+                JCM
+            </div>
+            <div class="titulos-container">
+                <h1 class="titulo-colegio">Colegio José Clemente Maurer de Azari</h1>
+                <span class="subtitulo-sistema">Sistema Integral de Gestión Escolar</span>
+            </div>
+        </div>
+
+        <nav class="menu-navegacion">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#registro">Registro</a></li>
+                <li><a href="#estudiantes">Estudiantes</a></li>
+                <li><a href="#kardex">Kardex</a></li>
+                <li><a href="#maestro">Maestro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="contenedor-contenido">
+
+        <section class="recuadro-bienvenida">
+            <span class="emoji-escuela">🏫</span>
+            <h2>Bienvenidos al Sistema Escolar</h2>
+            <p>
+                Gestión académica integral para el colegio josé clemente maurer de azari. 
+                registro de estudiantes , control de notas y kardex academico completo
+            </p>
+        </section>
+
+        <section class="bloque-estadisticas">
+            <div class="tarjeta-pequena">
+                Estudiantes Totales
+                <span>100</span>
+            </div>
+            <div class="tarjeta-pequena">
+                Varones
+                <span>99</span>
+            </div>
+            <div class="tarjeta-pequena">
+                Hembras
+                <span>22</span>
+            </div>
+            <div class="tarjeta-pequena">
+                Materias
+                <span>14</span>
+            </div>
+            <div class="tarjeta-pequena">
+                Maestros
+                <span>12</span>
+            </div>
+        </section>
+
+        <section class="bloque-tres-cuadros">
+            
+            <div class="cuadro-info">
+                <h3><strong>Año de escolaridad 2026</strong></h3>
+                <p><strong>Gestión Vigente:</strong> Periodo Académico 2026</p>
+                <p>Periodo: enero - diciembre 2026</p>
+                <p>Trimentre: 3 periodos</p>
+                <p>Materias registrada: 14</p>
+                <p>Nota minima aprobatoria: 60 </p>
+            </div>
+
+            <div class="cuadro-info">
+                <h3><strong> Información del Colegio</strong></h3>
+                <p><strong>Institución:</strong> Colegio José Clemente Maurer de Azari</p>
+                <p>Azari , sucre - chuquisaca  </p>
+                <p>Control total: Director</p>
+                <p>Acceo lectura:Maestros </p>
+            </div>
+
+            <div class="cuadro-info">
+                <h3><strong>Materias del Plan 14</strong></h3>
+                <ul class="lista-materias">
+                    <li>1.  Matemáticas</li>
+                    <li>2. Lenguaje y Lit.</li>
+                    <li>3. Ciencias Naturales</li>
+                    <li>4.  Física</li>
+                    <li>5.  Química</li>
+                    <li>6.  Ciencias Sociales</li>
+                    <li>7. Historia</li>
+                    <li>8.  Geografía</li>
+                    <li>9. Filosofía / Psic.</li>
+                    <li>10.  Idioma Extranjero</li>
+                    <li>11. Artes Plásticas</li>
+                    <li>12.  Música</li>
+                    <li>13. Ed. Física</li>
+                    <li>14. informatica</li>
+                </ul>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

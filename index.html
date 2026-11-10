@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDU-VOLEY</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #06152b, #1a365d);
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    background: #1e262c;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.header {
+    background: linear-gradient(90deg, #4ecdc4, #44b7ad);
+    padding: 18px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #06152b;
+    letter-spacing: 2px;
+}
+
+.page {
+    display: none;
+    padding: 25px;
+}
+
+.page.active {
+    display: block;
+}
+
+/* REGISTRO */
+
+.welcome-title {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #9ca3af;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #d1d5db;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    background: #26343c;
+    border: 1px solid #52616b;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #10b981;
+}
+
+select.form-control option {
+    background: #1e262c;
+    color: white;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 13px;
+    background: #10b981;
+    border: none;
+    border-radius: 8px;
+    color: #06152b;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background: #059669;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* MENU PRINCIPAL */
+
+.menu-title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 23px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: linear-gradient(145deg, #1e4a7a, #163a66);
+    padding: 25px 12px;
+    border-radius: 16px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+    color: white;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #ffd700;
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.btn-perfil {
+    width: 100%;
+    background: #ffc107;
+    color: #06152b;
+    padding: 13px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* INFORMACIÓN DE CADA SECCIÓN */
+
+.contenido {
+    background: #163a66;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid #4ecdc4;
+}
+
+.imagen-tema {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+.contenido h2 {
+    color: #ffd700;
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+
+.contenido p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #ffffff;
+    background: rgba(78,205,196,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.btn-volver {
+    margin-top: 22px;
+    background: #ffc107;
+    color: #06152b;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media(max-width: 350px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">🏐 EDU-VOLEY 🏐</div>
+
+    <!-- PANTALLA 1: REGISTRO -->
+
+    <section id="registro" class="page active">
+
+        <h2 class="welcome-title">Bienvenido a EDU-VOLEY</h2>
+
+        <p class="subtitle">
+            Tu nombre o apodo (opcional, puedes omitirlo):
+        </p>
+
+        <div class="form-group">
+            <input type="text" id="nombre"
+            class="form-control"
+            placeholder="Nombre o apodo">
+        </div>
+
+        <div class="form-group">
+            <label>Edad:</label>
+            <input type="number" id="edad"
+            class="form-control"
+            value="18" placeholder="Edad">
+        </div>
+
+        <div class="form-group">
+            <label>Posición favorita:</label>
+
+            <select id="posicion" class="form-control">
+                <option>No tengo una posición definida</option>
+                <option>Colocador / Armador</option>
+                <option>Rematador / Opuesto</option>
+                <option>Auxiliar / Punta</option>
+                <option>Central</option>
+                <option>Líbero</option>
+            </select>
+        </div>
+
+        <button class="btn-primary" onclick="empezar()">
+            Empezar
+        </button>
+
+        <p class="disclaimer">
+            No pedimos datos personales vinculantes.
+            Todo se guarda solo en tu teléfono.
+        </p>
+
+    </section>
+
+    <!-- PANTALLA 2: MENU DE VOLEIBOL -->
+
+    <section id="menu" class="page">
+
+        <h2 class="menu-title">
+            ¡Bienvenido al entrenamiento! 🏐
+        </h2>
+
+        <div class="grid">
+
+            <button class="card" onclick="mostrarPagina('tecnicas')">
+                <div class="card-icon">🏐</div>
+                <div class="card-title">Técnicas</div>
+            </button>
+
+            <button class="card" onclick="mostrarPagina('ejercicios')">
+                <div class="card-icon">💪</div>
+                <div class="card-title">Ejercicios</div>
+            </button>
+
+            <button class="card" onclick="mostrarPagina('sistemas')">
+                <div class="card-icon">📐</div>
+                <div class="card-title">Sistemas de juego</div>
+            </button>
+
+            <button class="card" onclick="mostrarPagina('quiz')">
+                <div class="card-icon">🧠</div>
+                <div class="card-title">Quiz</div>
+            </button>
+
+            <button class="card" onclick="mostrarPagina('entrenar')">
+                <div class="card-icon">🏃</div>
+                <div class="card-title">Entrenar hoy</div>
+            </button>
+
+            <button class="card" onclick="mostrarPagina('favoritos')">
+                <div class="card-icon">⭐</div>
+                <div class="card-title">Favoritos</div>
+            </button>
+
+        </div>
+
+        <button class="btn-perfil" onclick="cambiarPerfil()">
+            👤 Cambiar perfil
+        </button>
+
+    </section>
+
+    <!-- PANTALLA 3: INFORMACIÓN -->
+
+    <section id="informacion" class="page">
+
+        <div class="contenido">
+
+            <div id="pagina-imagen" class="imagen-tema"></div>
+
+            <h2 id="pagina-titulo"></h2>
+
+            <p id="pagina-texto"></p>
+
+            <button class="btn-volver" onclick="volverMenu()">
+                ← Volver al menú
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+
+/* CAMBIAR PANTALLAS */
+
+function cambiarPantalla(id) {
+
+    document.querySelectorAll(".page").forEach(function(pagina) {
+        pagina.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+}
+
+/* EMPEZAR DESPUÉS DEL REGISTRO */
+
+function empezar() {
+
+    const edad = document.getElementById("edad").value;
+
+    if (edad === "" || Number(edad) < 1) {
+        alert("Por favor, introduce una edad válida.");
+        return;
+    }
+
+    const nombre = document.getElementById("nombre").value;
+
+    if (nombre.trim() !== "") {
+        document.querySelector(".menu-title").textContent =
+        "¡Bienvenido/a " + nombre + "! 🏐";
+    }
+
+    cambiarPantalla("menu");
+}
+
+/* DATOS DEL VOLEIBOL */
+
+const datos = {
+
+    tecnicas:{
+    imagen: "🏐",
+    titulo: "📖 Técnicas del Voleibol",
+    texto: `
+    <div style="text-align:center; margin-bottom:20px;">
+        <h2 style="color:#ffd700; font-size:22px;">🏐 Las 5 Técnicas del Voleibol</h2>
+        <p style="color:#87ceeb;">Haz clic para ver imágenes</p>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ffd700;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">🎾 Saque</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Es poner el balón en juego desde la línea de fondo.</p>
+        <a href="https://www.google.com/search?q=saque+de+voleibol&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ffd700;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">🤲 Recepción</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Recibir el saque contrario con los antebrazos.</p>
+        <a href="https://www.google.com/search?q=recepción+voleibol+antebrazos&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ffd700;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">✋ Pase</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Elevar el balón para que un compañero pueda rematar.</p>
+        <a href="https://www.google.com/search?q=pase+voleibol+dos+manos&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ffd700;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">💥 Remate</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Golpear el balón con fuerza al campo contrario.</p>
+        <a href="https://www.google.com/search?q=remate+voleibol&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; border-left:4px solid #ffd700;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">🧱 Bloqueo</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Saltar junto a la red para detener el remate.</p>
+        <a href="https://www.google.com/search?q=bloqueo+voleibol&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+    `
+    },
+
+    ejercicios:{
+    imagen: "💪",
+    titulo: "🏋️ Ejercicios de Entrenamiento",
+    texto: `
+    <div style="text-align:center; margin-bottom:20px;">
+        <h2 style="color:#ffd700; font-size:22px;">🔥 Ejercicios para practicar</h2>
+        <p style="color:#87ceeb;">Haz clic para ver cómo se hace</p>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ff6b35;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">🔥 Calentamiento</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Preparar el cuerpo con movimientos suaves durante 10 minutos.</p>
+        <a href="https://www.google.com/search?q=calentamiento+para+voleibol&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ff6b35; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ff6b35;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">🤲 Control de balón</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Realizar pases contra la pared para mejorar tu precisión.</p>
+        <a href="https://www.google.com/search?q=control+de+balón+voleibol+pase+contra+pared&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ff6b35; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ff6b35;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">🎾 Práctica de saque</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Realizar al menos 15 repeticiones de saque en cada sesión.</p>
+        <a href="https://www.google.com/search?q=práctica+de+saque+voleibol&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ff6b35; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #ff6b35;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">💥 Práctica de remate</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Practicar el salto y el golpeo con ayuda de tu profesor.</p>
+        <a href="https://www.google.com/search?q=práctica+de+remate+voleibol&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ff6b35; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; border-left:4px solid #ff6b35;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">🧘 Estiramiento</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;">Relajar los músculos al terminar para evitar dolores y lesiones.</p>
+        <a href="https://www.google.com/search?q=estiramientos+después+de+entrenar+voleibol&tbm=isch" target="_blank" 
+           style="display:inline-block; background:#ff6b35; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+            📷 Ver imágenes
+        </a>
+    </div>
+    `
+    },
+
+    sistemas:{
+    imagen: "📐",
+    titulo: "🏐 Sistemas de Juego",
+    texto: `
+    <div style="text-align:center; margin-bottom:20px;">
+        <h2 style="color:#ffd700; font-size:22px;">📋 Los 3 sistemas principales</h2>
+        <p style="color:#87ceeb;">Haz clic para ver imágenes y videos explicativos</p>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #22c55e;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">📌 Sistema 4-2</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;"><strong>4 atacantes + 2 colocadores.</strong> Ideal para principiantes, sencillo y fácil de aprender.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="https://www.google.com/search?q=sistema+4-2+voleibol+posiciones&tbm=isch" target="_blank" 
+               style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+                📷 Ver imágenes
+            </a>
+            <a href="https://www.youtube.com/results?search_query=sistema+4-2+voleibol+explicación" target="_blank" 
+               style="display:inline-block; background:#ff0000; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+                ▶️ Ver video
+            </a>
+        </div>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:12px; border-left:4px solid #3b82f6;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">📌 Sistema 5-1</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;"><strong>5 atacantes + 1 colocador.</strong> El más usado en competencias. Un solo jugador organiza todo el ataque.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="https://www.google.com/search?q=sistema+5-1+voleibol+posiciones&tbm=isch" target="_blank" 
+               style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+                📷 Ver imágenes
+            </a>
+            <a href="https://www.youtube.com/results?search_query=sistema+5-1+voleibol+explicación" target="_blank" 
+               style="display:inline-block; background:#ff0000; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+                ▶️ Ver video
+            </a>
+        </div>
+    </div>
+
+    <div style="background:#1e40af; padding:15px; border-radius:12px; border-left:4px solid #a855f7;">
+        <h3 style="color:#ffffff; margin:0 0 8px 0;">📌 Sistema 6-2</h3>
+        <p style="color:#e0e7ff; margin:0 0 8px 0;"><strong>6 atacantes + 2 colocadores.</strong> Siempre hay un colocador en zona de ataque. Más avanzado y ofensivo.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="https://www.google.com/search?q=sistema+6-2+voleibol+posiciones&tbm=isch" target="_blank" 
+               style="display:inline-block; background:#ffd700; color:#000; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+                📷 Ver imágenes
+            </a>
+            <a href="https://www.youtube.com/results?search_query=sistema+6-2+voleibol+explicación" target="_blank" 
+               style="display:inline-block; background:#ff0000; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-weight:bold;">
+                ▶️ Ver video
+            </a>
+        </div>
+    </div>
+    `      
+    },
+
+    quiz:{
+    imagen: "🧠",
+    titulo: "🏆 Quiz de Voleibol",
+    texto: `
+    <div style="text-align:center; margin-bottom:20px;">
+        <h2 style="color:#ffd700; font-size:22px;">❓ Pon a prueba tus conocimientos</h2>
+        <p style="color:#87ceeb;">Haz clic en la respuesta que creas correcta</p>
+    </div>
+
+    <style>
+        .opcion {
+            background:#2563eb;
+            color:white;
+            padding:12px 15px;
+            margin:8px 0;
+            border-radius:8px;
+            cursor:pointer;
+        }
+    </style>
+
+    <!-- PREGUNTA 1 -->
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:15px;">
+        <p style="font-weight:bold; margin-bottom:10px; color:white;">1. ¿Cuántos jugadores juegan por equipo en la cancha?</p>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">a) 5 jugadores</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#16a34a'">b) 6 jugadores</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">c) 7 jugadores</div>
+    </div>
+
+    <!-- PREGUNTA 2 -->
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:15px;">
+        <p style="font-weight:bold; margin-bottom:10px; color:white;">2. ¿Qué es el saque?</p>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">a) Golpear el balón hacia arriba</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#16a34a'">b) Poner el balón en juego desde la línea de fondo</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">c) Recibir el balón del contrario</div>
+    </div>
+
+    <!-- PREGUNTA 3 -->
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:15px;">
+        <p style="font-weight:bold; margin-bottom:10px; color:white;">3. ¿Dónde se coloca generalmente el colocador?</p>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">a) En la zona de defensa</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">b) En la línea de fondo</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#16a34a'">c) En zona 2 o 3</div>
+    </div>
+
+    <!-- PREGUNTA 4 -->
+    <div style="background:#1e40af; padding:15px; border-radius:12px; margin-bottom:15px;">
+        <p style="font-weight:bold; margin-bottom:10px; color:white;">4. ¿Cuándo se obtiene un punto?</p>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#16a34a'">a) Cuando el balón toca el suelo del campo contrario</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">b) Cuando el balón sale fuera sin tocar a nadie</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">c) Cuando el árbitro silba</div>
+    </div>
+
+    <!-- PREGUNTA 5 -->
+    <div style="background:#1e40af; padding:15px; border-radius:12px;">
+        <p style="font-weight:bold; margin-bottom:10px; color:white;">5. ¿Cuál es la altura oficial de la red para hombres?</p>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">a) 2.30 m</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#16a34a'">b) 2.43 m</div>
+        <div class="opcion" style="background:#2563eb;" onmousedown="this.style.background='#dc2626'">c) 2.50 m</div>
+    </div>
+    `
+    },
+
+    entrenar:{
+    imagen: "⏱️",
+    titulo: "ENTRENAR HOY",
+    texto: `
+    📋 <strong>Rutina recomendada:</strong><br><br>
+    
+    🕒 00:00 - 05:00 → <strong>Calentamiento</strong><br>
+    <a href="https://www.youtube.com/results?search_query=calentamiento+voleibol+ejercicios" target="_blank">▶️ Ver video de calentamiento</a><br><br>
+    
+    🕒 05:00 - 15:00 → <strong>Pases y recepción</strong><br>
+    <a href="https://www.youtube.com/results?search_query=pases+y+recepcion+voleibol+tecnica" target="_blank">▶️ Ver video de pases y recepción</a><br><br>
+    
+    🕒 15:00 - 25:00 → <strong>Saques y remates</strong><br>
+    <a href="https://www.youtube.com/results?search_query=saques+y+remates+voleibol+tecnica" target="_blank">▶️ Ver video de saques y remates</a><br><br>
+    
+    🕒 25:00 - 30:00 → <strong>Estiramiento</strong><br>
+    <a href="https://www.youtube.com/results?search_query=estiramientos+para+voleibol+completo" target="_blank">▶️ Ver video de estiramiento</a><br><br>
+    
+    💪 <em>¡La constancia hace al jugador!</em>
+    `   
+    },
+
+    favoritos:{
+    imagen: "❤️ ⭐",
+    titulo: "TUS FAVORITOS",
+    texto: `
+    📂 <strong>Aquí puedes guardar:</strong><br><br>
+    
+    ✅ <strong>Ejercicios favoritos</strong><br>
+    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400" style="width:100%;max-width:350px;border-radius:8px;margin:8px 0;"><br>
+    <a href="https://www.youtube.com/results?search_query=ejercicios+voleibol+mejores" target="_blank">▶️ Ver ejercicios recomendados</a><br><br>
+    
+    ✅ <strong>Reglas importantes</strong><br>
+    <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=400" style="width:100%;max-width:350px;border-radius:8px;margin:8px 0;"><br>
+    <a href="https://www.youtube.com/results?search_query=reglas+del+voleibol+explicadas+fivb" target="_blank">▶️ Ver reglas oficiales</a><br><br>
+    
+    ✅ <strong>Metas de entrenamiento</strong><br>
+    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400" style="width:100%;max-width:350px;border-radius:8px;margin:8px 0;"><br>
+    Establece tus objetivos y cúmplelos 💪<br><br>
+    
+    ✅ <strong>Contenido para repasar</strong><br>
+    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400" style="width:100%;max-width:350px;border-radius:8px;margin:8px 0;"><br>
+    Guarda lo que quieras practicar más tarde<br><br>
+    
+    ❤️ <em>¡Marca lo más importante para ti!</em>
+    `   
+    }
+
+};
+
+/* MOSTRAR INFORMACIÓN */
+
+function mostrarPagina(opcion) {
+
+    document.getElementById("pagina-imagen").textContent =
+    datos[opcion].imagen;
+
+    document.getElementById("pagina-titulo").textContent =
+    datos[opcion].titulo;
+
+    document.getElementById("pagina-texto").innerHTML =
+    datos[opcion].texto;
+
+    cambiarPantalla("informacion");
+}
+
+/* VOLVER AL MENU */
+
+function volverMenu() {
+    cambiarPantalla("menu");
+}
+
+/* CAMBIAR PERFIL */
+
+function cambiarPerfil() {
+    cambiarPantalla("registro");
+}
+
+</script>
+
+</body>
+</html>

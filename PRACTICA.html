@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHANHET 2026</title>
+<style>
+body{margin:0;font-family:Arial;background:#081b4b;color:#fff;text-align:center}
+.portada{padding:100px 20px}
+.portada h1{font-size:80px;color:gold;text-shadow:0 0 15px gold}
+.subtitulo{font-size:18px;letter-spacing:2px;text-transform:uppercase}
+.linea{width:200px;height:3px;background:gold;margin:15px auto}
+.contador{padding:50px 20px}
+.contador h2{color:gold;font-size:30px}
+.cajas{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.caja{border:2px solid gold;padding:15px;width:100px;border-radius:8px}
+.numero{font-size:40px;color:gold;font-weight:bold}
+.historia{padding:50px 20px}
+.historia h2{color:gold;font-size:40px}
+.historia p{font-size:20px;font-style:italic}
+.galeria{display:flex;justify-content:center;gap:10px;padding:40px 20px;flex-wrap:wrap}
+.galeria img{width:280px;height:200px;object-fit:cover;border-radius:8px;border:2px solid gold}
+.grande{width:450px!important}
+@media(max-width:768px){
+.portada h1{font-size:50px}
+.galeria img,.grande{width:90%!important;height:180px}
+.caja{width:70px;padding:10px}
+.numero{font-size:30}
+}
+</style>
+</head>
+<body>
+
+<section class="portada">
+<h1>SHANHET</h1>
+<p class="subtitulo">Inicio de otra nueva etapa</p>
+<div class="linea"></div>
+<p>Promoción 2026 • Unidos para alcanzar nuestros sueños</p>
+</section>
+
+<section class="contador">
+<h2 id="titulo">CUENTA PARA ABANDONAR EL COLEGIO</h2>
+<div class="cajas">
+<div class="caja"><div class="numero" id="d">170</div>DÍAS</div>
+<div class="caja"><div class="numero" id="h">07</div>HORAS</div>
+<div class="caja"><div class="numero" id="m">59</div>MIN</div>
+<div class="caja"><div class="numero" id="s">02</div>SEG</div>
+</div>
+</section>
+
+<section class="historia">
+<h2>NUESTRA HISTORIA</h2>
+<p>"Cada paso que dimos juntos construyó recuerdos para siempre."</p>
+<p>— PROMO SHANHET 2026 —</p>
+</section>
+
+<section class="galeria">
+<img src="imagen1.jpg" class="grande">
+<img src="imagen2.jpg">
+<img src="imagen3.jpg">
+</section>
+
+<script>
+const fecha=new Date("Dec 10, 2026").getTime();
+setInterval(()=>{
+let d=fecha-new Date().getTime();
+if(d<0){document.getElementById("titulo").innerText="¡YA NOS GRADUAMOS!";return}
+document.getElementById("d").innerText=Math.floor(d/86400000);
+document.getElementById("h").innerText=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+document.getElementById("m").innerText=String(Math.floor(d%3600000/60000)).padStart(2,'0');
+document.getElementById("s").innerText=String(Math.floor(d%60000/1000)).padStart(2,'0');
+},1000);
+</script>
+<html>

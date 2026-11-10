@@ -1,0 +1,639 @@
+from pathlib import Path
+
+html = r"""
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOLLEYAPP - Técnicas y Estrategias</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#07151d;
+  --panel:#10232d;
+  --panel2:#15303b;
+  --primary:#17d9c5;
+  --primary2:#0db5a5;
+  --text:#f4fbfb;
+  --muted:#9bb1b7;
+  --line:#29434c;
+  --danger:#ff667c;
+}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
+  background:radial-gradient(circle at 50% 0%,#173943 0%,#07151d 55%);
+  min-height:100vh;
+}
+.app{
+  max-width:1100px;
+  margin:auto;
+  min-height:100vh;
+}
+header{
+  padding:18px 22px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  position:sticky;
+  top:0;
+  background:#07151de6;
+  backdrop-filter:blur(10px);
+  z-index:10;
+}
+.logo{
+  font-weight:900;
+  letter-spacing:1px;
+  font-size:22px;
+}
+.logo span{
+  color:var(--primary);
+}
+.header-user{
+  color:var(--muted);
+  font-size:13px;
+}
+main{
+  padding:28px 18px 50px;
+}
+.screen{
+  display:none;
+}
+.screen.active{
+  display:block;
+}
+.welcome,.card,.profile-card{
+  background:linear-gradient(145deg,#102731,#0d2029);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:0 18px 45px #0005;
+}
+.welcome{
+  max-width:680px;
+  margin:40px auto;
+  padding:30px;
+}
+h1{
+  font-size:32px;
+  margin:0 0 8px;
+}
+h2{
+  margin:0 0 8px;
+  font-size:27px;
+}
+h3{
+  margin:0 0 7px;
+}
+p{
+  color:var(--muted);
+  margin:7px 0 18px;
+  line-height:1.5;
+}
+label{
+  display:block;
+  color:#dce8ea;
+  font-size:14px;
+  margin:15px 0 7px;
+}
+input,select,textarea{
+  width:100%;
+  padding:13px 14px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#0a1b23;
+  color:white;
+  outline:none;
+  font-size:15px;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary);
+}
+.btn{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  margin-top:14px;
+  background:var(--primary);
+  color:#05201e;
+  font-weight:800;
+  cursor:pointer;
+  font-size:15px;
+}
+.btn:hover{
+  background:#35ebd8;
+}
+.small-note{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:12px;
+}
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  margin-bottom:22px;
+}
+.top p{
+  margin:0;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+.card{
+  padding:20px;
+  cursor:pointer;
+  transition:.2s;
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#36727c;
+}
+.card .ico{
+  font-size:30px;
+  margin-bottom:10px;
+}
+.card p{
+  font-size:13px;
+  margin-bottom:0;
+}
+.badge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:20px;
+  background:#0d4d4a;
+  color:#7ff8ec;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+.back{
+  background:transparent;
+  border:1px solid var(--line);
+  color:#d9eeee;
+  padding:9px 12px;
+  border-radius:9px;
+  cursor:pointer;
+}
+.list{
+  display:grid;
+  gap:12px;
+}
+.detail{
+  padding:17px;
+  background:#0b1e27;
+  border:1px solid var(--line);
+  border-radius:13px;
+}
+.detail strong{
+  color:var(--primary);
+}
+.quiz-option{
+  display:block;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin:8px 0;
+  color:#dce8ea;
+  cursor:pointer;
+  background:#0a1b23;
+}
+.quiz-option:hover{
+  border-color:var(--primary);
+}
+input{
+  width:auto;
+  margin-right:8px;
+}
+.result{
+  padding:15px;
+  border-radius:10px;
+  margin-top:15px;
+  background:#103a36;
+  display:none;
+}
+.stat{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:solid 1px var(--line);
+}
+.progress{
+  height:12px;
+  background:#0a1b23;
+  border-radius:20px;
+  overflow:hidden;
+  margin:10px 0 18px;
+}
+.progress div{
+  height:100%;
+  background:var(--primary);
+  width:0;
+  transition:.5s;
+}
+nav{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding:12px 18px;
+  border-bottom:1px solid var(--line);
+}
+nav button{
+  white-space:nowrap;
+  background:#0c2028;
+  border:1px solid var(--line);
+  color:#cfe0e3;
+  border-radius:9px;
+  padding:9px 12px;
+  cursor:pointer;
+}
+nav button.active{
+  background:var(--primary);
+  color:#05201e;
+  border-color:var(--primary);
+  font-weight:bold;
+}
+footer{
+  text-align:center;
+  color:#688088;
+  padding:20px;
+  font-size:12px;
+}
+@media(max-width:600px){
+  .welcome{
+    margin:15px auto;
+    padding:22px;
+  }
+  .grid{
+    grid-template-columns:1fr;
+  }
+  h1{
+    font-size:27px;
+  }
+  .top{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:8px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo"><span>🏐</span> VOLLEYAPP</div>
+    <div class="header-user" id="headerUser">Modo estudiante</div>
+  </header>
+  <nav id="nav" style="display:none">
+    <button data-screen="home">Inicio</button>
+    <button data-screen="techniques">Técnicas</button>
+    <button data-screen="strategies">Estrategias</button>
+    <button data-screen="exercises">Ejercicios</button>
+    <button data-screen="rules">Reglas</button>
+    <button data-screen="progress">Progreso</button>
+  </nav>
+  <main>
+
+    <!-- PANTALLA DE BIENVENIDA / REGISTRO -->
+    <div class="screen active" id="welcome">
+      <div class="welcome">
+        <h1>Bienvenido a VOLLEYAPP</h1>
+        <p>Tu espacio para aprender técnicas y estrategias de voleibol de manera práctica e interactiva.</p>
+        
+        <label>Tu nombre o apodo (opcional)</label>
+        <input type="text" id="name" placeholder="Estudiante">
+        
+        <label>Edad</label>
+        <input type="number" id="age" placeholder="Edad">
+        
+        <label>Posición favorita</label>
+        <select id="position">
+          <option value="">No tengo una posición definida</option>
+          <option>Armador / colocador</option>
+          <option>Central</option>
+          <option>Punta / receptor</option>
+          <option>Opuesto</option>
+          <option>Líbero</option>
+        </select>
+        
+        <button class="btn" onclick="enterApp()">Entrar</button>
+        <p class="small-note">Tus datos se guardan solamente en este navegador para personalizar la aplicación.</p>
+      </div>
+    </div>
+
+    <!-- PANTALLA PRINCIPAL -->
+    <div class="screen" id="home">
+      <h2 id="hello">¡Bienvenido! 🏐</h2>
+      <p>Elige una sección para comenzar a entrenar.</p>
+      
+      <div class="grid">
+        <div class="card" onclick="go('techniques')">
+          <div class="ico">🏐</div>
+          <h3>Técnicas</h3>
+          <p>Saque, recepción, pase, armado, ataque y bloqueo/defensa.</p>
+        </div>
+        <div class="card" onclick="go('strategies')">
+          <div class="ico">⚡</div>
+          <h3>Estrategias</h3>
+          <p>Aprende organización ofensiva, defensiva y rotaciones.</p>
+        </div>
+        <div class="card" onclick="go('exercises')">
+          <div class="ico">💪</div>
+          <h3>Ejercicios</h3>
+          <p>Practica fundamentos de forma progresiva.</p>
+        </div>
+        <div class="card" onclick="go('rules')">
+          <div class="ico">📋</div>
+          <h3>Reglas</h3>
+          <p>Consulta reglas básicas para comprender el juego.</p>
+        </div>
+        <div class="card" onclick="go('quiz')">
+          <div class="ico">✍️</div>
+          <h3>Autoevaluación</h3>
+          <p>Comprueba lo que aprendiste con preguntas interactivas.</p>
+        </div>
+        <div class="card" onclick="go('progress')">
+          <div class="ico">📈</div>
+          <h3>Mi progreso</h3>
+          <p>Revisa tu último resultado y continúa mejorando.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TÉCNICAS -->
+    <div class="screen" id="techniques">
+      <div class="top">
+        <div>
+          <button class="back" onclick="go('home')">← Inicio</button>
+          <h2>Técnicas del voleibol</h2>
+          <p>Selecciona una técnica para conocer su función.</p>
+        </div>
+      </div>
+      <div class="list">
+        <div class="detail">
+          <h3>🏐 1. Saque</h3>
+          <p>Inicia la jugada enviando el balón al campo contrario. Requiere coordinación, control y dirección.</p>
+        </div>
+        <div class="detail">
+          <h3>🤲 2. Recepción</h3>
+          <p>Permite controlar el balón que llega del rival y dirigirlo hacia una zona adecuada para continuar la jugada.</p>
+        </div>
+        <div class="detail">
+          <h3>👏 3. Pase</h3>
+          <p>También llamado voleo. Ayuda a mantener el balón controlado y preparar la siguiente acción.</p>
+        </div>
+        <div class="detail">
+          <h3>🎯 4. Armado</h3>
+          <p>Organiza la ofensiva y coloca el balón en una posición favorable para realizar el ataque.</p>
+        </div>
+        <div class="detail">
+          <h3>🔥 5. Ataque</h3>
+          <p>Busca enviar el balón al campo contrario con precisión y aprovechar los espacios disponibles.</p>
+        </div>
+        <div class="detail">
+          <h3>🛡️ 6. Bloqueo y defensa</h3>
+          <p>El bloqueo dificulta el ataque rival y la defensa permite recuperar balones y mantener la jugada.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTRATEGIAS -->
+    <div class="screen" id="strategies">
+      <div class="top">
+        <div>
+          <button class="back" onclick="go('home')">← Inicio</button>
+          <h2>Estrategias de juego</h2>
+          <p>Recursos para comprender mejor la organización del equipo.</p>
+        </div>
+      </div>
+      <div class="list">
+        <div class="detail">
+          <h3>⚡ Ataque</h3>
+          <p>Combinar recepción, armado y ataque para aprovechar espacios del equipo contrario.</p>
+        </div>
+        <div class="detail">
+          <h3>🛡️ Defensa</h3>
+          <p>Coordinar bloqueo y defensa para cubrir las zonas del campo.</p>
+        </div>
+        <div class="detail">
+          <h3>🔄 Rotación</h3>
+          <p>Organizar las posiciones del equipo mediante el sistema de rotación.</p>
+        </div>
+        <div class="detail">
+          <h3>🤝 Comunicación</h3>
+          <p>Coordinarse durante cada jugada para evitar confusiones.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EJERCICIOS -->
+    <div class="screen" id="exercises">
+      <div class="top">
+        <div>
+          <button class="back" onclick="go('home')">← Inicio</button>
+          <h2>Ejercicios de práctica</h2>
+          <p>Realiza los ejercicios de forma progresiva y con supervisión del entrenador.</p>
+        </div>
+      </div>
+      <div class="list">
+        <div class="detail">
+          <strong>Ejercicio 1 — Saque:</strong> Practica la dirección del saque hacia diferentes zonas de la cancha.
+        </div>
+        <div class="detail">
+          <strong>Ejercicio 2 — Recepción:</strong> Practica la recepción dirigiendo el balón hacia una zona marcada.
+        </div>
+        <div class="detail">
+          <strong>Ejercicio 3 — Pase y armado:</strong> Realiza una secuencia de control y colocación para preparar el ataque.
+        </div>
+        <div class="detail">
+          <strong>Ejercicio 4 — Ataque:</strong> Practica el ataque buscando diferentes zonas del campo contrario.
+        </div>
+        <div class="detail">
+          <strong>Ejercicio 5 — Bloqueo y defensa:</strong> Coordina el bloqueo y la cobertura defensiva ante diferentes ataques.
+        </div>
+      </div>
+    </div>
+
+    <!-- REGLAS -->
+    <div class="screen" id="rules">
+      <div class="top">
+        <div>
+          <button class="back" onclick="go('home')">← Inicio</button>
+          <h2>Reglas básicas</h2>
+          <p>Conceptos básicos para acompañar el aprendizaje técnico.</p>
+        </div>
+      </div>
+      <div class="list">
+        <div class="detail">
+          <strong>1. Equipo:</strong><br>
+          El voleibol se juega con dos equipos separados por una red.
+        </div>
+        <div class="detail">
+          <strong>2. Toques:</strong><br>
+          Un equipo dispone de hasta tres contactos para devolver el balón al campo contrario.
+        </div>
+        <div class="detail">
+          <strong>3. Rotación:</strong><br>
+          Los jugadores rotan cuando recuperan el derecho a sacar.
+        </div>
+        <div class="detail">
+          <strong>4. Red:</strong><br>
+          Los jugadores deben respetar las reglas relacionadas con la red durante las acciones de juego.
+        </div>
+        <div class="detail">
+          <strong>5. Puntuación:</strong><br>
+          Los puntos se consiguen cuando el balón cae dentro del campo rival o cuando el contrario comete una infracción.
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTOEVALUACIÓN -->
+    <div class="screen" id="quiz">
+      <div class="top">
+        <div>
+          <button class="back" onclick="go('home')">← Inicio</button>
+          <h2>Autoevaluación</h2>
+          <p>Responde las preguntas y comprueba tu aprendizaje.</p>
+        </div>
+      </div>
+      <div class="list">
+        <div class="detail">
+          <p><strong>1. ¿Qué acción inicia una jugada?</strong></p>
+          <label class="quiz-option"><input type="radio" name="q1" value="a"> Saque</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="b"> Bloqueo</label>
+          <label class="quiz-option"><input type="radio" name="q1" value="c"> Defensa</label>
+        </div>
+        <div class="detail">
+          <p><strong>2. ¿Qué técnica controla principalmente el saque rival?</strong></p>
+          <label class="quiz-option"><input type="radio" name="q2" value="a"> Ataque</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="b"> Recepción</label>
+          <label class="quiz-option"><input type="radio" name="q2" value="c"> Bloqueo</label>
+        </div>
+        <div class="detail">
+          <p><strong>3. ¿Para qué sirve el armado?</strong></p>
+          <label class="quiz-option"><input type="radio" name="q3" value="a"> Preparar el ataque</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="b"> Terminar el partido</label>
+          <label class="quiz-option"><input type="radio" name="q3" value="c"> Cambiar de posición</label>
+        </div>
+        <div class="detail">
+          <p><strong>4. ¿Qué busca el bloqueo?</strong></p>
+          <label class="quiz-option"><input type="radio" name="q4" value="a"> Facilitar el saque</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="b"> Dificultar el ataque rival</label>
+          <label class="quiz-option"><input type="radio" name="q4" value="c"> Hacer una rotación</label>
+        </div>
+      </div>
+      <button class="btn" onclick="grade()">Ver resultado</button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <!-- PROGRESO -->
+    <div class="screen" id="progress">
+      <div class="top">
+        <div>
+          <button class="back" onclick="go('home')">← Inicio</button>
+          <h2>Mi progreso</h2>
+          <p>Aquí puedes revisar tu avance.</p>
+        </div>
+      </div>
+      <div class="profile-card" style="padding:20px;margin-bottom:20px">
+        <div class="stat"><span>Usuario</span><span id="pName">Estudiante</span></div>
+        <div class="stat"><span>Posición</span><span id="pPos">Sin definir</span></div>
+        <div class="stat"><span>Último resultado</span><span id="pScore">0%</span></div>
+        <div class="stat"><span>Nivel de autoevaluación</span><span id="pLevel">—</span></div>
+        <div class="progress"><div id="bar"></div></div>
+      </div>
+      <p>VOLLEYAPP — Aplicación educativa basada en el proyecto de técnicas y estrategias de voleibol.</p>
+    </div>
+
+  </main>
+  <footer>VOLLEYAPP © 2026 — Aprende voleibol paso a paso</footer>
+</div>
+
+<script>
+function $(id){ return document.getElementById(id); }
+
+function enterApp(){
+  const name = $('name').value.trim();
+  const age = $('age').value;
+  const pos = $('position').value;
+  localStorage.setItem('volleyUser', JSON.stringify({name,age,pos}));
+  updateUser();
+  show('home');
+  document.getElementById('nav').style.display = 'flex';
+}
+
+function updateUser(){
+  const u = JSON.parse(localStorage.getItem('volleyUser') || '{}');
+  $('headerUser').textContent = u.name ? Hola, ${u.name} : 'Modo estudiante';
+  $('hello').textContent = u.name ? ¡Hola, ${u.name}! 🏐 : '¡Bienvenido! 🏐';
+  $('pName').textContent = u.name || 'Estudiante';
+  $('pPos').textContent = u.pos || 'Sin definir';
+}
+
+function show(id, btn){
+  document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
+  $(id).classList.add('active');
+  if(btn){
+    document.querySelectorAll('nav button').forEach(x => x.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+  updateProgress();
+}
+
+function go(id){
+  show(id);
+  document.querySelectorAll('nav button').forEach(b => {
+    b.classList.toggle('active', b.dataset.screen === id);
+  });
+}
+
+function grade(){
+  const key = {q1:'a', q2:'b', q3:'a', q4:'b'};
+  let ok = 0;
+  for(const q in key){
+    const a = document.querySelector(input[name="${q}"]:checked);
+    if(a && a.value === key[q]) ok++;
+  }
+  const pct = Math.round(ok/4*100);
+  localStorage.setItem('volleyScore', pct);
+  $('result').style.display = 'block';
+  $('result').innerHTML = <b>Resultado: ${ok}/4 (${pct}%)</b><br> +
+    (pct>=75 ? '¡Muy bien! Sigue practicando.' : 'Sigue repasando las técnicas y vuelve a intentarlo.');
+  updateProgress();
+}
+
+function updateProgress(){
+  const pct = Number(localStorage.getItem('volleyScore')) || 0;
+  if($('pScore')) $('pScore').textContent = pct+'%';
+  if($('bar')) $('bar').style.width = pct+'%';
+  if($('pLevel')) $('pLevel').textContent = pct>=75 ? 'Avanzado' : pct>=50 ? 'En progreso' : 'En proceso';
+  
+  const saved = localStorage.getItem('volleyUser');
+  if(saved){
+    updateUser();
+  }
+}
+
+// Cargar datos al iniciar
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('volleyUser');
+  if(saved){
+    updateUser();
+    show('home');
+    document.getElementById('nav').style.display = 'flex';
+  }
+});
+</script>
+"""
+
+path = Path("/mnt/data/volleyapp_estilo_arifutsal.html")
+path.write_text(html, encoding="utf-8")
+print(f"Aplicación creada: {path}")

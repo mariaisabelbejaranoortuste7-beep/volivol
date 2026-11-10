@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>voleibol Técnicas - App Educativa</title>
+<style>
+:root{
+  --primary:#ff6b00; --secondary:#111827; --bg:#f5f7fb; --card:#fff;
+  --text:#1f2937; --muted:#6b7280; --success:#16a34a; --danger:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+header{
+  background:linear-gradient(135deg,#111827,#273449);color:white;padding:28px 18px;
+  text-align:center;position:sticky;top:0;z-index:10;box-shadow:0 3px 12px #0002
+}
+header h1{font-size:clamp(24px,5vw,38px);margin-bottom:5px}
+header p{color:#dbe4ef}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+nav button,.btn{
+  border:0;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:bold;
+  background:#fff;color:#111827;transition:.2s
+}
+nav button:hover,.btn:hover{transform:translateY(-2px)}
+nav button.active,.btn.primary{background:var(--primary);color:white}
+.container{max-width:1100px;margin:auto;padding:25px 16px}
+.page{display:none}.page.active{display:block}
+.hero{
+  background:linear-gradient(135deg,#ff6b00,#ff9d4d);color:white;border-radius:22px;padding:35px 25px;
+  margin-bottom:25px;box-shadow:0 10px 25px #ff6b0030
+}
+.hero h2{font-size:32px;margin-bottom:10px}.hero p{max-width:800px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}
+.card{
+  background:var(--card);padding:20px;border-radius:17px;box-shadow:0 5px 18px #1111110d;
+  border:1px solid #e8ebf0
+}
+.card h3{margin-bottom:8px;color:#111827}.card p{color:#4b5563}
+.icon{font-size:38px;margin-bottom:8px}
+.section-title{margin:28px 0 10px;font-size:25px}
+.technique{cursor:pointer;border-top:5px solid var(--primary)}
+.technique small{color:var(--muted)}
+.detail{
+  display:none;margin-top:12px;padding:13px;background:#fff7ed;border-radius:10px;
+}
+.technique.open .detail{display:block}
+.badge{display:inline-block;background:#fff0e5;color:#c2410c;padding:4px 9px;border-radius:20px;font-size:12px;font-weight:bold}
+.strategy{border-left:5px solid #2563eb}
+.quiz-question{margin:20px 0}.quiz-question h4{margin-bottom:9px}
+.option{display:block;margin:7px 0;padding:11px;border:1px solid #ddd;border-radius:9px;cursor:pointer}
+.option:hover{background:#f9fafb}.option input{margin-right:8px}
+.result{margin-top:15px;font-weight:bold}
+.progress-wrap{background:#e5e7eb;border-radius:20px;height:18px;overflow:hidden;margin:10px 0}
+.progress-bar{height:100%;width:0;background:var(--success);transition:.4s}
+textarea,input[type=text]{
+  width:100%;padding:12px;border:1px solid #d1d5db;border-radius:9px;margin:8px 0 15px;font:inherit
+}
+footer{text-align:center;color:var(--muted);padding:30px 15px}
+.note{background:#eff6ff;border-left:5px solid #2563eb;padding:14px;border-radius:8px;margin-top:15px}
+ul{padding-left:20px}li{margin:5px 0}
+@media(max-width:600px){header{position:relative}.hero h2{font-size:26px}nav button{font-size:12px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏐 voleibol Técnicas</h1>
+  <p>Aplicación educativa de técnicas y estrategias del voleibol</p>
+  <nav>
+    <button class="active" onclick="showPage('inicio',this)">Inicio</button>
+    <button onclick="showPage('tecnicas',this)">Técnicas</button>
+    <button onclick="showPage('estrategias',this)">Estrategias</button>
+    <button onclick="showPage('quiz',this)">Autoevaluación</button>
+    <button onclick="showPage('entrenador',this)">Entrenador</button>
+    <button onclick="showPage('progreso',this)">Mi progreso</button>
+  </nav>
+</header>
+
+<main class="container">
+
+<section id="inicio" class="page active">
+  <div class="hero">
+    <h2>Aprende, practica y mejora 🏐</h2>
+    <p>Una herramienta digital para aprender las técnicas fundamentales y las estrategias tácticas del voleibol de forma clara, interactiva y progresiva.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="icon">🏐</div><h3>6 técnicas fundamentales</h3><p>Saque, recepción, pase, armado, ataque y bloqueo/defensa.</p></div>
+    <div class="card"><div class="icon">🎯</div><h3>Estrategias</h3><p>Conoce ideas básicas para organizar el ataque y la defensa del equipo.</p></div>
+    <div class="card"><div class="icon">📝</div><h3>Autoevaluación</h3><p>Responde preguntas y comprueba cuánto aprendiste.</p></div>
+    <div class="card"><div class="icon">📈</div><h3>Seguimiento</h3><p>Tu progreso se guarda en este navegador.</p></div>
+  </div>
+  <div class="note"><b>Objetivo del proyecto:</b> apoyar el aprendizaje de las técnicas y estrategias del voleibol mediante una herramienta digital interactiva.</div>
+</section>
+
+<section id="tecnicas" class="page">
+  <h2 class="section-title">🏐 Técnicas fundamentales</h2>
+  <p>Haz clic en cada tarjeta para ver una explicación sencilla.</p>
+  <div class="grid">
+    <div class="card technique" onclick="toggle(this)">
+      <span class="badge">Técnica 1</span><h3>🏐 Saque</h3><p>Inicio de la jugada.</p>
+      <div class="detail">El saque pone el balón en juego. Requiere coordinación, control y dirección para enviar el balón al campo contrario.</div>
+    </div>
+    <div class="card technique" onclick="toggle(this)">
+      <span class="badge">Técnica 2</span><h3>👐 Recepción</h3><p>Control del saque rival.</p>
+      <div class="detail">La recepción permite controlar el balón que llega del equipo contrario y dirigirlo hacia una zona adecuada para continuar la jugada.</div>
+    </div>
+    <div class="card technique" onclick="toggle(this)">
+      <span class="badge">Técnica 3</span><h3>🤲 Pase</h3><p>Comunicación y continuidad.</p>
+      <div class="detail">El pase o voleo ayuda a mantener el balón controlado y preparar la siguiente acción ofensiva.</div>
+    </div>
+    <div class="card technique" onclick="toggle(this)">
+      <span class="badge">Técnica 4</span><h3>🎯 Armado</h3><p>Preparación del ataque.</p>
+      <div class="detail">El armado organiza la ofensiva y coloca el balón en una posición favorable para que un compañero realice el ataque.</div>
+    </div>
+    <div class="card technique" onclick="toggle(this)">
+      <span class="badge">Técnica 5</span><h3>🔥 Ataque</h3><p>Acción ofensiva.</p>
+      <div class="detail">El ataque busca enviar el balón al campo contrario con precisión y potencia, aprovechando los espacios disponibles.</div>
+    </div>
+    <div class="card technique" onclick="toggle(this)">
+      <span class="badge">Técnica 6</span><h3>🛡️ Bloqueo y defensa</h3><p>Protección del campo.</p>
+      <div class="detail">El bloqueo intenta detener o dificultar el ataque rival en la red. La defensa permite recuperar balones y mantener viva la jugada.</div>
+    </div>
+  </div>
+</section>
+
+<section id="estrategias" class="page">
+  <h2 class="section-title">🎯 Estrategias de juego</h2>
+  <div class="grid">
+    <div class="card strategy"><h3>⚡ Estrategia ofensiva</h3><p>Organizar el ataque mediante recepción, armado y diferentes opciones de ataque para aprovechar espacios del equipo rival.</p></div>
+    <div class="card strategy"><h3>🛡️ Estrategia defensiva</h3><p>Coordinar bloqueo y defensa para cubrir zonas del campo y responder a los ataques del oponente.</p></div>
+    <div class="card strategy"><h3>🔄 Rotación</h3><p>Los jugadores cambian de posición siguiendo el sistema de rotación, manteniendo la organización del equipo.</p></div>
+    <div class="card strategy"><h3>🤝 Comunicación</h3><p>Hablar y coordinarse durante cada jugada ayuda a evitar confusiones y mejora la organización colectiva.</p></div>
+  </div>
+  <h2 class="section-title">📋 Principios de entrenamiento</h2>
+  <div class="grid">
+    <div class="card"><h3>Progresión</h3><p>Avanzar de ejercicios básicos hacia situaciones más complejas.</p></div>
+    <div class="card"><h3>Individualización</h3><p>Adaptar el aprendizaje a las necesidades y nivel de cada jugador.</p></div>
+    <div class="card"><h3>Variabilidad</h3><p>Practicar diferentes situaciones para mejorar la adaptación y toma de decisiones.</p></div>
+    <div class="card"><h3>Especificidad</h3><p>Realizar ejercicios relacionados con situaciones reales del voleibol.</p></div>
+  </div>
+</section>
+
+<section id="quiz" class="page">
+  <h2 class="section-title">📝 Autoevaluación</h2>
+  <p>Responde las preguntas y presiona “Calcular resultado”.</p>
+  <div class="card">
+    <div class="quiz-question"><h4>1. ¿Qué acción inicia una jugada?</h4>
+      <label class="option"><input type="radio" name="q1" value="a"> El saque</label>
+      <label class="option"><input type="radio" name="q1" value="b"> El bloqueo</label>
+      <label class="option"><input type="radio" name="q1" value="c"> La defensa</label>
+    </div>
+    <div class="quiz-question"><h4>2. ¿Qué técnica ayuda a controlar el saque rival?</h4>
+      <label class="option"><input type="radio" name="q2" value="a"> Ataque</label>
+      <label class="option"><input type="radio" name="q2" value="b"> Recepción</label>
+      <label class="option"><input type="radio" name="q2" value="c"> Bloqueo</label>
+    </div>
+    <div class="quiz-question"><h4>3. ¿Para qué sirve principalmente el armado?</h4>
+      <label class="option"><input type="radio" name="q3" value="a"> Preparar el ataque</label>
+      <label class="option"><input type="radio" name="q3" value="b"> Terminar el partido</label>
+      <label class="option"><input type="radio" name="q3" value="c"> Hacer la rotación</label>
+    </div>
+    <div class="quiz-question"><h4>4. ¿Qué busca el bloqueo?</h4>
+      <label class="option"><input type="radio" name="q4" value="a"> Facilitar el saque</label>
+      <label class="option"><input type="radio" name="q4" value="b"> Detener o dificultar el ataque rival</label>
+      <label class="option"><input type="radio" name="q4" value="c"> Cambiar de entrenador</label>
+    </div>
+    <button class="btn primary" onclick="calificar()">Calcular resultado</button>
+    <div id="resultado" class="result"></div>
+  </div>
+</section>
+
+<section id="entrenador" class="page">
+  <h2 class="section-title">👨‍🏫 Módulo para entrenador</h2>
+  <div class="card">
+    <h3>Planificar una sesión</h3>
+    <label>Nombre de la sesión</label>
+    <input type="text" id="sessionName" placeholder="Ej.: Recepción y ataque">
+    <label>Objetivo</label>
+    <textarea id="sessionGoal" rows="4" placeholder="Escribe el objetivo de la sesión..."></textarea>
+    <label>Ejercicios</label>
+    <textarea id="sessionExercises" rows="5" placeholder="Ejercicio 1...&#10;Ejercicio 2...&#10;Ejercicio 3..."></textarea>
+    <button class="btn primary" onclick="guardarSesion()">Guardar sesión</button>
+    <div id="savedSession" class="note" style="display:none"></div>
+  </div>
+</section>
+
+<section id="progreso" class="page">
+  <h2 class="section-title">📈 Mi progreso</h2>
+  <div class="card">
+    <h3>Autoevaluación</h3>
+    <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+    <p id="progressText">Todavía no realizaste la autoevaluación.</p>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>💡 Consejos para mejorar</h3>
+    <ul>
+      <li>Practica una técnica a la vez y aumenta gradualmente la dificultad.</li>
+      <li>Observa los movimientos y luego intenta reproducirlos.</li>
+      <li>Combina técnica con situaciones reales de juego.</li>
+      <li>Usa la autoevaluación para identificar qué necesitas reforzar.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Volleyball Técnicas</b> — Proyecto educativo de aplicación web</p>
+  <p>Basado en el proyecto de grado sobre técnicas y estrategias del voleibol.</p>
+</footer>
+
+<script>
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='progreso') actualizarProgreso();
+}
+function toggle(card){card.classList.toggle('open')}
+
+function calificar(){
+  const respuestas={q1:'a',q2:'b',q3:'a',q4:'b'};
+  let correctas=0;
+  Object.keys(respuestas).forEach(q=>{
+    const marcada=document.querySelector(input[name="${q}"]:checked);
+    if(marcada && marcada.value===respuestas[q]) correctas++;
+  });
+  const porcentaje=Math.round(correctas/4*100);
+  localStorage.setItem('volleyProgress',porcentaje);
+  document.getElementById('resultado').innerHTML=
+    Resultado: ${correctas}/4 correctas (${porcentaje}%). ${porcentaje>=75?'¡Muy bien! Sigue practicando.':'Sigue estudiando las técnicas y vuelve a intentarlo.'};
+}
+function actualizarProgreso(){
+  const p=Number(localStorage.getItem('volleyProgress')||0);
+  document.getElementById('progressBar').style.width=p+'%';
+  document.getElementById('progressText').textContent=
+    p ? Tu último resultado fue de ${p}%. Puedes volver a realizar la autoevaluación para mejorar. :
+    'Todavía no realizaste la autoevaluación.';
+}
+function guardarSesion(){
+  const nombre=document.getElementById('sessionName').value.trim();
+  const objetivo=document.getElementById('sessionGoal').value.trim();
+  const ejercicios=document.getElementById('sessionExercises').value.trim();
+  if(!nombre || !objetivo){alert('Completa al menos el nombre y el objetivo.');return;}
+  const data={nombre,objetivo,ejercicios};
+  localStorage.setItem('volleySession',JSON.stringify(data));
+  mostrarSesion(data);
+}
+function mostrarSesion(data){
+  const box=document.getElementById('savedSession');
+  box.style.display='block';
+  box.innerHTML=`<b>Sesión guardada:</b> ${escapeHtml(data.nombre)}<br>
+  <b>Objetivo:</b> ${escapeHtml(data.objetivo)}<br>
+  <b>Ejercicios:</b><br>${escapeHtml(data.ejercicios||'No registrados').replace(/\n/g,'<br>')}`;
+}
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+const saved=localStorage.getItem('volleySession');
+if(saved){try{mostrarSesion(JSON.parse(saved));}catch(e){}}
+</script>
+</body>
+</html>

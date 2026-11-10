@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario de Registro</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#ccefff;
+}
+
+.contenedor{
+    width:400px;
+    margin:30px auto;
+    background:#fff3eb;
+    padding:20px;
+    border-radius:10px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+label{
+    font-weight:bold;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #555;
+    border-radius:5px;
+}
+
+.radio{
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+</style>
+
+</head>
+<body>
+
+<div class="contenedor">
+
+<h2>Registro de estudiantes</h2>
+
+<form>
+
+<label>Nombre:</label>
+<input type="text" placeholder="Ingrese su nombre">
+
+<label>Fecha de Nacimiento:</label>
+<input type="date">
+
+<label>Edad:</label>
+<input type="number" placeholder="Ingrese su edad">
+
+<label>Género:</label>
+<select>
+<option>Seleccione</option>
+<option>Masculino</option>
+<option>Femenino</option>
+</select>
+
+<label>Ciudad:</label>
+<input type="text" placeholder="Ingrese su ciudad">
+
+<label>Correo:</label>
+<input type="email" placeholder="Ingrese su correo">
+
+<table>
+<tr aling="center">
+     <td><input type="radio" name="usuario"></td>
+     <td><input type="radio" name="usuario"></td>
+    <td><input type="radio" name="usuario"></td>
+<tr aling="center">
+  <td>Estudiante</td>
+   <td>Profecional</td>
+    <td>Amo de casa</td>
+</tr>
+</table>
+
+<label>Nombre o Nick:</label>
+<input type="text" placeholder="Ingrese su nombre o nick">
+
+<label>Contraseña:</label>
+<input type="password" placeholder="Ingrese su contraseña">
+
+<button type="submit">Registrar</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

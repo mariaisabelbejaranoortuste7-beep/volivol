@@ -1,0 +1,131 @@
+html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EDU-VOLEY</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #06152b;
+            color: white;
+        }
+
+        /* Pantalla de bienvenida */
+        .inicio {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+
+            background:
+                linear-gradient(
+                    rgba(3, 12, 35, 0.45),
+                    rgba(3, 12, 35, 0.80)
+                ),
+                url("fondo.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Logo de la aplicación */
+        .logo {
+            width: 100%;
+            max-width: 340px;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 25px;
+        }
+
+        /* Texto de bienvenida */
+        h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 16px;
+            color: #d9e8ff;
+            margin-bottom: 35px;
+        }
+
+        /* Botón ingresar */
+        .boton {
+            display: inline-block;
+            width: 100%;
+            max-width: 320px;
+            padding: 17px;
+            border-radius: 40px;
+            background: linear-gradient(
+                90deg, #00c878, #00a8d8
+            );
+            color: white;
+            text-decoration: none;
+            font-size: 19px;
+            font-weight: bold;
+            border: 2px solid #62e9ff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .boton:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 20px #00c878;
+        }
+
+        .pie {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #b8cce8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="inicio">
+
+        <!-- Logo de la app -->
+        <img
+            src="logo.jpg"
+            alt="Logo de EDU-VOLEY"
+            class="logo"
+            onerror="this.onerror=null; this.parentElement.insertAdjacentHTML('afterbegin', `<svg class='logo' viewBox='0 0 500 300' xmlns='http://www.w3.org/2000/svg'><path d='M250 30 L410 100 L410 240 L250 290 L90 240 L90 100 Z' fill='none' stroke='#2a3a6e' stroke-width='6'/><circle cx='250' cy='125' r='55' fill='none' stroke='#10b981' stroke-width='8'/><path d='M205 125 C205 95 295 95 295 125' fill='none' stroke='#00a8d8' stroke-width='6'/><path d='M210 150 C230 110 270 110 290 150' fill='none' stroke='#00a8d8' stroke-width='6'/><path d='M295 85 Q350 40 390 25' fill='none' stroke='#00a8d8' stroke-width='7' stroke-linecap='round'/><path d='M280 70 Q330 30 370 15' fill='none' stroke='#00a8d8' stroke-width='5' stroke-linecap='round'/><text x='250' y='225' font-family='Arial, sans-serif' font-weight='900' font-size='34' fill='#00e5ff' text-anchor='middle' letter-spacing='2'>ARIVOLEY</text><text x='250' y='252' font-family='Arial, sans-serif' font-weight='bold' font-size='16' fill='#1a56a3' text-anchor='middle' letter-spacing='4'>BALL APP</text></svg>`); this.remove();"
+        >
+
+        <!-- Bienvenida -->
+        <h1>¡Bienvenido a EDU-VOLEY</h1>
+
+        <p>
+            Aprende, practica y mejora tus habilidades
+            en el voleibol.
+        </p>
+
+        <!-- Botón de ingreso -->
+        <a href="file:///D:/isabel/practica%201/aplicacion4.html#" class="boton">
+            Ingresar →
+        </a>
+
+        <div class="pie">
+            Tu progreso comienza aquí 🏐
+        </div>
+
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>mtdu</title>
+
+<style>
+
+body{
+    background: brown;
+    margin:0;
+    font-family: Arial;
+}
+
+/* centro verde */
+.contenedor{
+    background: limegreen;
+    width:70%;
+    margin:auto;
+    min-height:100vh;
+    text-align:center;
+    padding:20px;
+}
+
+/* imágenes */
+.imagenes{
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+    gap:20px;
+    padding-left: 10px;
+}
+
+/* horizontal */
+.horizontal{
+    flex-direction: row;
+    justify-content:flex-start;
+}
+
+img{
+    width:200px;
+}
+
+button{
+    padding:10px 20px;
+    margin:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>Gracias por visitarme</h1>
+
+<!-- párrafo 1 -->
+<p>Escudo de bolivia</p>
+
+<button onclick="cambiar()" id="boton">
+    Hide
+</button>
+
+<div class="imagenes" id="imgs">
+
+    <img src="download(1).jpg"align-items>
+     
+    <!-- párrafo 2 -->
+    <p id="parrafo2">U.E. J.C.M.A.</p>
+
+    <img src="download.jpg">
+
+</div>
+
+</div>
+
+<script>
+
+function cambiar(){
+
+    let caja = document.getElementById("imgs");
+    let texto = document.getElementById("parrafo2");
+    let boton = document.getElementById("boton");
+
+    // cambia posición
+    caja.classList.toggle("horizontal");
+
+    // oculta o muestra el párrafo
+    texto.classList.toggle("oculto");
+
+    // cambia texto del botón
+    if(texto.classList.contains("oculto")){
+        boton.innerHTML = "toggle";
+    }else{
+        boton.innerHTML = "Hide";
+    }
+}
+
+</script>
+
+<style>
+
+/* ocultar */
+.oculto{
+    display:none;
+}
+
+</style>
+
+</body>
+</html>
